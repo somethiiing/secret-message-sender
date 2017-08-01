@@ -1,4 +1,4 @@
-# Tovia's Enigma
+# Secret Message Sender
 
 Allows users to create encrypted messages using a random passphrase. Also can decrypt the messages. Allows for expiration dates for the messages; if expired, it will not give a message. In addition, if given an undecryptable message or incorrect passphrase, will show error message. Passphrases can be passed in by # in the URL.
 
@@ -17,6 +17,15 @@ npm install
 npm start
 ```
 deploys to localhost:3000
+
+### Editing
+
+```
+npm install
+npm run build
+npm run toolbox
+npm start
+```
 
 
 ### Todo

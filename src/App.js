@@ -62,7 +62,7 @@ class App extends Component {
       expDate: this.state.expDate
     };
 
-    axios.post(`${this.apiUrl}/api/encrypt`, {
+    axios.post(`${apiUrl}/api/encrypt`, {
       message: message,
       hash: this.state.hash
     })
@@ -77,7 +77,7 @@ class App extends Component {
 
   decrypt = () => {
     this.setState({dialogErrMsg: false})
-    axios.post(`${this.apiUrl}/api/decrypt`, {
+    axios.post(`${apiUrl}/api/decrypt`, {
       message: this.state.dialogText,
       hash: this.state.hash
     })

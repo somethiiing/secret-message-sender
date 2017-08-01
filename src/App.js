@@ -124,7 +124,7 @@ class App extends Component {
         <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
           <ThemeProvider theme={theme}>
             <Card style={{width: '375px', height: '400px'}}>
-              <CardTitle title="Tovia's Engima" />
+              <CardTitle title="Secret Message Maker" />
               <CardTitle avatar='https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_grey_512dp.png'>
                 <Input required type='text' label='Name' name='name' value={this.state.name} onChange={this.handleChange.bind(this, 'name')}  />
               </CardTitle>

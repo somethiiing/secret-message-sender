@@ -26,4 +26,4 @@ deploys to localhost:3000
 * create unit tests
 
 ### Additional
-Bootstrapped using Create-React-App.
+Bootstrapped using Create-React-App. Can separate into more components. Didn't feel it was necessary considering the simplicity of the application.

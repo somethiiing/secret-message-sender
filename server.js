@@ -26,22 +26,46 @@ app.post('/api/encrypt/', (req, res) => {
   let passphrase = req.body.hash;
   let message = req.body.message;
   let encrypted = encrypt(message, passphrase);
-  console.log(encrypted)
   res.send(encrypted);
 })
 
 let decrypt = (message, passphrase) => {
-  let decipher = crypto.createDecipher(algorithm, passphrase)
-  let dec = decipher.update(message,'hex','utf8')
-  dec += decipher.final('utf8');
-  return dec;
+  let decipher = crypto.createDecipher(algorithm, passphrase);
+  try {
+    let dec = decipher.update(message,'hex','utf8');
+    dec += decipher.final('utf8');
+    return dec;
+  } catch (err) {
+    return 'FAILED';
+  }
 }
 
 app.post('/api/decrypt/', (req, res) => {
   let passphrase = req.body.hash;
   let message = req.body.message;
   let decrypted = decrypt(message, passphrase);
-  res.send(decrypted);
+  let error = false;
+  let response = {};
+
+  if (decrypted === 'FAILED' ) {
+    response = { status: 'FAILED' };
+  } else {
+    try {
+      decrypted = JSON.parse(decrypted);
+    } catch (err) {
+      error = true;
+      response = { status: 'FAILED' }
+    }
+    if (!error) {
+      let date = Date();
+      if (date < decrypted.expDate) {
+        response = { status: 'FAILED' };
+      } else {
+        response = { status: 'SUCCESS', message: decrypted };
+      }
+    }
+  }
+  res.send(response);
 })
 
 app.get('*', (req, res) => {

@@ -10,16 +10,16 @@
     "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.10",
-    "react-simple-tooltip": "^1.0.5",
     "react-toolbox": "^2.0.0-beta.6",
     "react-toolbox-themr": "^1.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "fe": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "toolbox": "react-toolbox-themr"
+    "toolbox": "react-toolbox-themr",
+    "start": "node server.js"
   },
   "reactToolbox": {
     "include": [

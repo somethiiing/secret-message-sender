@@ -12,6 +12,8 @@ import Dialog from 'react-toolbox/lib/dialog/Dialog';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import axios from 'axios';
 
+
+const apiUrl = 'https://safe-basin-56758.herokuapp.com'
 const min_datetime = new Date();
 
 class App extends Component {
@@ -60,7 +62,7 @@ class App extends Component {
       expDate: this.state.expDate
     };
 
-    axios.post('http://localhost:3000/api/encrypt', {
+    axios.post(`${this.apiUrl}/api/encrypt`, {
       message: message,
       hash: this.state.hash
     })
@@ -75,7 +77,7 @@ class App extends Component {
 
   decrypt = () => {
     this.setState({dialogErrMsg: false})
-    axios.post('http://localhost:3000/api/decrypt', {
+    axios.post(`${this.apiUrl}/api/decrypt`, {
       message: this.state.dialogText,
       hash: this.state.hash
     })

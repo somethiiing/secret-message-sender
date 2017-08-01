@@ -53,6 +53,7 @@ class App extends Component {
   };
 
   encrypt = () => {
+    this.setState({dialogErrMsg: false})
     let message = {
       name: this.state.name,
       message: this.state.message,
@@ -83,7 +84,7 @@ class App extends Component {
         this.setState({dialogErrMsg: true});
       } else if (res.data.status === 'SUCCESS') {
         let message = res.data.message;
-        let date = new Date(message.expDate);
+        let date = message.expDate !== '' ? new Date(message.expDate) : '';
         this.setState({
           name: message.name,
           message: message.message,
@@ -123,9 +124,9 @@ class App extends Component {
             <Card style={{width: '375px', height: '400px'}}>
               <CardTitle title="Tovia's Engima" />
               <CardTitle avatar='https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_grey_512dp.png'>
-                <Input type='text' label='Name' name='name' value={this.state.name} onChange={this.handleChange.bind(this, 'name')}  />
+                <Input required type='text' label='Name' name='name' value={this.state.name} onChange={this.handleChange.bind(this, 'name')}  />
               </CardTitle>
-              <Input type='text' multiline label='Message' hint='Type your secret message here' maxLength={120} value={this.state.message} onChange={this.handleChange.bind(this, 'message')} />
+              <Input required type='text' multiline label='Message' hint='Type your secret message here' maxLength={120} value={this.state.message} onChange={this.handleChange.bind(this, 'message')} />
               <DatePicker label='Expiration date' sundayFirstDayOfWeek minDate={min_datetime} onChange={this.handleChange.bind(this, 'expDate')} value={this.state.expDate} />
               <CardActions>
                 <Button label='Encrypt' onClick={this.encrypt} />
